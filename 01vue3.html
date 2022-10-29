@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 雙括弧是模板語言 -->
+        <h1>{{name}}</h1>
+        <div>{{count}}</div>
+        <div>{{obj}}</div>
+        <div>{{talk}}</div>
+        <div>{{array}}</div>
+        <hr>
+        <h1>{{typeof name}}</h1>
+        <div>{{typeof count}}</div>
+        <div>{{obj}}</div>
+        
+        <div>{{talk ? '愛講話': '不愛講話'}}</div>
+        <div>{{array.length}}</div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // console.log('vue: ',Vue)
+        // 新增一個應用application 建立Vue實體(instance)
+        // Vue是大寫
+        Vue.createApp({
+            data(){
+                return{
+                    count: 1,
+                    name:'Mandy',
+                    array: [1,2,3],
+                    obj:{test:'123'},
+                    talk:true
+
+                }
+            }
+        }).mount('#app')//並掛載(mount)在網頁節點上(id="app")
+    </script>
+
+</body>
+</html>

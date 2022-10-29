@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue2</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{count}}</h1>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //寫法一
+        // console.log(Vue);
+        // new Vue({
+        //     data: {
+        //         count: 1
+        //     },
+        //     el: '#app'
+        // })
+        // 寫法二
+        const App =  new Vue({
+            data: {
+                count: 1
+            },
+            // 2-1
+            // el: '#app' //el 是 element簡寫
+        })
+        // 2-2
+        App.$mount('#app')
+        // console.log(App);
+
+    </script>
+    <!-- <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        //vue3寫法---
+        // console.log('vue: ',Vue)
+        Vue.createApp({
+            data(){
+                return{
+                    count: 1,
+                   
+                }
+            }
+        }).mount('#app')
+    </script> -->
+
+</body>
+</html>
