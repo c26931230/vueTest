@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue3寫法</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         #app{
             border: 1px #333 solid;
@@ -30,50 +31,53 @@
     </style>
 </head>
 <body>
+    <a class="page" href="index.html">index</a>
     <div id="app">
-        <button v-for="num in 9" :key="num" @click="keyin = num">{{num}}</button>
-        <button>0</button>
-        <button @click="reduce">-</button>
-        <button @click="add">+</button>
-        <button @click="clac">=</button>
-        <button @click="clear">C</button>
-        <div class="step">
-            {{step}}
-        </div>
-        <h6>{{result}}</h6>
-        <!-- <h1 data-attr="1">{{title}}</h1>
+        <h1 data-attr="1">{{title}}</h1>
         <p>商品價格: {{price}}元</p>
         <div>
+            <!-- w1 -->
+            <!-- <button @click="count -= 1">-</button> -->
+
+            <!-- w2 -->
             <button @click="reduce">-</button>
+
+            <!-- w1 -->
             <input type="number" v-model="count" min="0">
+            <!-- w2 -->
+            <!-- <input type="text" v-model.number="count"> -->
             <button @click="add">+</button>
         </div>
         <button class ="add">Add</button>
-        <p>總計: {{total}} 元</p> -->
+        <p>總計: {{total}} 元</p>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         Vue.createApp({
             data(){
                 return{
-                    step: "",
-                    keyin: 0,
-                    result:0,
-                   
+                    title:"商品名稱",
+                    count: 1,
+                    price: 100,
+                    total: 0,
                 }
             },
             methods:{
                 add(){
-                   this.result += this.keyin
+                    console.log(this.count);
+                    this.count += 1
+                    // this.total = this.count * this.price
+                    this.sumTotal();
                 },
                 reduce(){
-                   
+                    if(this.count <= 0) return //小於0跳出去
+                    this.count -= 1
+                    // this.total = this.count * this.price
+                    this.sumTotal()
                 },
-                calc(){
-                    
-            },
-            clear(){
-
+                sumTotal(){
+                    this.total = this.count * this.price; //拉出來寫
+                }
             }
         }).mount('#app')
     </script>

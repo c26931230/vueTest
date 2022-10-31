@@ -1,0 +1,16 @@
+  a.page{
+    display: inline-block;
+    text-decoration: none;
+    padding: 6px 10px;
+    background-color: #1746A2;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 30px;
+    transition: 0.5s;
+    margin: 10px;
+}
+a.page:hover{
+    transform: scale(0.98);
+    transition: 0.5s;
+    background-color: #5F9DF7;
+}

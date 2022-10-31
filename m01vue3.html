@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <!-- vue -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <p>name: {{name}}</p>
+        <p>count: {{count}}</p>
+        <p>food: {{food}}</p>
+        <p>talk: {{talk}}</p>
+        <p>array: {{array}}</p>
+        <p>obj: {{obj}}</p>
+        <hr>
+        <p>name: {{name}}想吃{{food}}</p>
+        <p>count: {{typeof count}}</p>
+        <p>talk: {{talk ? '話多':'話少'}}</p>
+        <p>array: {{array.length}}</p>
+        <p>obj: {{obj}}</p>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    count: 2,
+                    name: '🐢',
+                    food: '🍟',
+                    talk: true,
+                    array:[1,2,3],
+                    obj: {test: '123'}
+                }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <style>
+        #app{
+            border: 1px #333 solid;
+            width: 200px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #app button{
+            width: 63px;
+            margin: 0.5px;
+            border: 1px solid yellow;
+            margin: 1.5px;
+            padding: 5px;
+            background-color: darkblue;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #app button:last-child{
+            flex-grow: 1;
+        }
+        #keyin, #val{
+            width: 100%;
+            border: 1px solid #333;
+            text-align: right;
+            height: 16px;
+            padding: 5px;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="keyin">{{keyin}}</div>
+        <div id="val">{{val}}</div>
+        <button v-for="num in 9" :key="num" @click="keyNumber(num)">{{num}}</button>
+        <!-- <button>0</button> -->
+        
+        <button @click="keyNumber(0)">0</button>
+        <button @click="keyDot">.</button>
+        <button @click="add">+</button>
+        <button @click="reduce">-</button>
+        <button @click="multiply">*</button>
+        <button @click="divided">/</button>
+        <button @click="clear">Cls</button>
+        <button @click="calc">=</button>
+       
+        
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+           data(){
+            return {
+                keyin:'',
+                val:'',
+            }
+           },
+           methods:{
+                keyNumber(number){
+                    if(this.keyin == "0" && number == "0") return
+                    this.keyin += number.toString()
+                },
+                keyDot(){
+                    if(this.keyin.includes(".")) return
+                    this.keyin += "."
+                },
+                clear(){
+                    this.keyin = ""
+                    this.val = ""
+                },
+                add(){
+                    this.keyin += "+"
+                    this.val = this.keyin
+                },
+                calc(){
+                    this.keyin = this.val
+                }
+
+           }
+        }).mount('#app')
+    </script>
+
+</body>
+</html>

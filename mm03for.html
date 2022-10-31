@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <style>
+       img{
+        width: 100px;
+       }
+       .item{
+        border: 1px solid #ddd;
+        width: 30%;
+       }
+       .wrap{
+        display: flex;
+       }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wrap">
+            <div class="item" v-for ="(i, index) in product" :key="i.id">
+                <h3>{{i.title}}</h3>
+                <p>產品價格: {{i.price}}</p>
+                <img :src="i.image" alt="">
+                <div>
+                    <button @click="reduceCount(index)">-</button>
+                    <input type="number" min="0" v-model="count[index]">
+                    <button @click="addCount(index)">+</button>
+                </div>
+            </div>
+            
+            
+        </div>
+        <p>總計: {{total}}</p>
+        <div>
+            <button v-for="page in 10">{{page}}</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    product: [{
+                        id:1,
+                        title:"coffee machine1",
+                        price: 109.98,
+                        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+                    },
+                    {
+                        id:2,
+                        title:"coffee machine2",
+                        price: 102.77,
+                        image: "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+                    }
+                ],
+                total:0,
+                count:[]
+                }
+            },
+            mounted(){
+                for(i in this.product){
+                    this.count.push(0)
+                }
+            },
+            methods:{
+                addCount(index){
+                    this.count[index] += 1
+                    this.sum()
+                },
+                reduceCount(index){
+                    if(this.count[index] <= 0) return
+                    this.count[index] -= 1
+                    this.sum()
+                },
+                sum(){
+                    this.total = 0
+                    for(j in this.count){
+                        this.total += this.count[j] * this.product[j]['price']
+                    }
+                }
+                
+            }
+        }).mount("#app")
+        
+    </script>
+
+</body>
+
+</html>
