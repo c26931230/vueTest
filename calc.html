@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>計算機</title>
     <script src="https://unpkg.com/vue@next"></script>
     <style>
@@ -43,6 +44,7 @@
     </style>
 </head>
 <body>
+    <a class="page" href="index.html">index</a>
     <div id="app">
         <div class="calc">
             <div class="display">{{current || '0'}}</div>
@@ -107,7 +109,7 @@
                     this.operatorClicked = true;
                 },
                 divide(){
-                    this.operator = (a, b) => a / b;
+                    this.operator = (a, b) => b / a;
                     this.setPrevious();
                 },
                 times(){
@@ -128,7 +130,6 @@
                     parseFloat(this.previous)
                     )}`;
                     this.previous = null;
-
                 }
 
             }
