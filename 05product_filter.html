@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <style>
+        #app {
+            border: 1px #333 solid;
+            width: fit-content;
+            padding: 10px;
+        }
+
+        img{
+            width: 50%;
+        }
+        .wrap{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            
+        }
+        .item{
+            width: 20%;
+            border: 1px #ddd solid;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="page" href="index.html">index</a>
+    <div id="app">
+        <header>
+            serach: <input type="text" v-model="search"><br>
+            min: <input type="number" v-model="min">
+            -
+            max: <input type="number" v-model="max">
+        </header>
+       
+        <!-- 變數 in 物件 -->
+        <div class="wrap">
+            <div v-for="(i, index) in product" class="item" :key="i.id">
+                {{index}}
+                <p>產品名稱: {{i.title}}</p>
+                <p>價格: {{i.price}}元</p>
+                 <!-- 前面加冒號: -->
+                <img :src="i.image" :alt="i.description">
+                <!-- <h1 data-attr="1">{{title}}</h1> -->
+                <p>商品價格: {{i.price}}元</p>
+                <div>
+                    <button @click="reduce(index)">-</button>
+                    <input type="number" v-model="count[index]">
+                    <button @click="add(index)">+</button>
+                </div>
+                <button class ="add(index)">Add</button>
+                <!-- <p>總計: {{total}} 元</p> -->
+            </div>
+            <p>總計: {{total}} 元</p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    // product: [],
+                    source:[],
+                    count: [],
+                    // total: 0,
+                    search:'',
+                    filter:0,
+                    load:false,
+                    min:0,
+                    max:0,
+                }
+            },
+            //created: Vue實體被建立完
+            created(){
+                this.getResource()
+                // this.parseprice()
+            },
+            computed:{
+
+                product(){
+                   
+                    let cache = this.source
+                    if(this.min > 0){
+                        cache = cache.filter(item=>{
+                            return item.price > this.min
+                        })
+                    }
+                    if(this.max > 0){
+                        cache = cache.filter(item=>{
+                            return item.price < this.max
+                        })
+                    }
+                    if(this.search != ''){
+                        cache = cache.filter(item=>{
+                            return item.title.includes(this.search)
+                        })
+                    }
+                    return cache;
+                },
+                total(){
+                    if(this.product.length> 0){
+						let total = 0
+						for ( const countIndex in this.product) {
+							total += this.count[countIndex] * this.product[countIndex]['price']
+						}
+						return parseInt(total )
+					}else{
+						return 0
+					}
+				}
+            },
+            watch:{
+                total: {
+                    handler:function(newVal, oldVal){
+                        console.log(oldVal);
+                        console.log(newVal);
+                      
+                    },
+                    deep:true
+                },
+            },
+            methods: {
+                // parseprice(price){
+                //     return price * 33;
+                // },
+                getResource(){
+                    this.load = true
+                    fetch('https://fakestoreapi.com/products')
+                    .then(res=>res.json())
+                    .then(json=>{
+                        console.log(json)
+                        this.source = json
+                        for (i in this.product){
+                            this.count.push(0)
+                        }
+                        this.load = false
+                    })
+                },
+                add(index) {
+                    this.count[index] += 1
+                    // this.sumTotal();
+                },
+                reduce(index) {
+                    if (this.count[index] <= 0) return //小於0跳出去
+                    this.count[index] -= 1
+                    // this.sumTotal()
+                },
+             
+                // sumTotal() {
+                //     // this.total = this.count * this.price; //拉出來寫
+                //     this.total = 0
+                //     for(countIndex in this.count){
+                //         this.total += this.count[countIndex] * this.product[countIndex]['price']
+                //     }
+                //     this.total = parseInt(this.total)
+             
+                // }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>

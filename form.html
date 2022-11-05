@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .avatar{
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+        background: #111;
+        border-radius: 50%;
+        border: 2px solid #111;
+        overflow: hidden;
+    }
+    .avatar .head{
+        position: absolute;
+        top: .5rem;
+        left: 1.6rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background-color: #fff;
+        transition: .5s;
+    }
+    .avatar .body{
+        position: absolute;
+        bottom: -1rem;
+        left: 0.5rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+    .tab{
+        height: 100px;
+        width: 100%;
+        background-color: darkkhaki;
+        
+    }
+    .tab p{
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+
+    
+    <div id="app">
+        <form action="">
+            <div class="avatar" @mouseover ="formHover = true" @mouseleave = "formHover = false" :style="{
+                bacground: activeColor? activeClor : '#ddd'
+            }">
+            <div class="head" :style="{
+                
+                width: formHover? '1rem': '1.5rem',
+                height: formHover? '1rem': '1.5rem'
+            }"></div>
+            <div class="body"></div>
+                
+            </div>
+            <label for="">email</label>
+            <input type="email" v-model="email">{{email}}<br>
+            <label for="">name</label>
+            <input type="text" v-model.trim="name">{{name}}
+            <div>
+                興趣:
+                <input type="checkbox" value="酒" v-model="drink" name="drink">
+                <label for="">愛喝酒</label>
+                <input type="checkbox" value="咖啡"  v-model="drink" name="drink">
+                <label for="">愛喝咖啡</label>
+                <input type="checkbox" value="茶"  v-model="drink" name="drink">
+                <label for="">愛喝茶</label>
+                {{drink}}
+                
+            </div>
+            <div>
+                性別:
+                <input type="radio" name="sex" v-model="sex" value="男">
+                <label for="">男</label>
+                <input type="radio" name="sex" v-model="sex" value="女">
+                <label for="">女</label> {{sex}}
+            </div>
+            <label for="">food</label>
+            <select name="food" id="food" v-model="food">
+                <option value="pork">pork</option>
+                <option value="beef">beef</option>
+            </select>
+            {{food}}
+            <div>
+                <input type="color" id="head" name="head" v-model="activeColor"
+                value="">
+                <label for="head">Head</label>
+                {{activeColor}}
+            </div>
+            <br>
+            <!-- if else -->
+            <div class="tab" :style="{
+                
+            }">
+                <p v-if="food === 'pork'">pork好吃!!</p>
+                <p v-else-if="food === 'beef'">beef超讚!!</p>
+                <p v-else>??</p>
+            </div>
+            <div class="tab" v-if="sex === '男'">man</div>
+            <div class="tab" v-else-if="sex === '女'">woman</div>
+            <div class="tab" v-else>請選擇性別</div>
+        </form>
+    </div>
+    <script>
+          Vue.createApp({
+            data(){
+                return{
+                    formHover: false,
+                    email:'',
+                    name:'',
+                    drink:[],
+                    sex:'',
+                    food:'',
+                    activeColorcolor: '',
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

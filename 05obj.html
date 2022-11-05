@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const product = [
+        {
+            title:'coffee dripper',
+            price:99,
+            count:10,
+            
+        },
+        {
+            title:'coffee',
+            price:100,
+            count:1,
+        }
+        ];
+        const product1 ={
+            title:'tea',
+            price:999,
+            count:98,
+        };
+        
+        product[1].price=888;
+        product.push(product1);
+        console.log(product[2].title);
+        console.log(product);
+    </script>
+</body>
+</html>
