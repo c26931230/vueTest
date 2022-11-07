@@ -15,8 +15,8 @@
         }
 
         img{
-            /* width: 50%; */
-            height: 100px;
+            width: 100%;
+            /* height: 100px; */
         }
         .wrap{
             display: flex;
@@ -31,7 +31,7 @@
             margin: 9px;
         }
         .title{
-            height: 80px;
+            height: 40px;
             font-size: 18px;
         }
         .add{
@@ -61,27 +61,22 @@
             <label>Search:</label>
             <input type="text" v-model = "search">
             <label>min: </label>
-            <input type="number" v-model="min">-
+            <input type="date" v-model="min">-
             <label>max: </label>
-            <input type="number" v-model="max">
+            <input type="date" v-model="max">
         </header>
         <!-- 產品區 -->
         <div class="wrap">
             <!-- 各項產品 -->
             <div v-for="(i, index) in product" class="item" :key="i.id">
-                    <p class="title">產品名: {{i.title}}</p>
+                    <h2 class="title">{{i.name}}</h2>
                     <p>價格: ${{i.price}}</p>
-                    <img :src="i.image" :alt="i.descripition">
-                    <!-- 數量 -->
-                    <div class="count_box">
-                        <button @click="reduce(index)">-</button>
-                        <input type="number" v-model="count[index]">
-                        
-                        <button @click="add(index)">+</button>
-                        
-                    </div>
-                    <!-- add button **-->
-                    <button class="add(index) add">Add</button>
+                    <img src="hotel.jpg" :alt="i.city">
+                    <h3>date:</h3>
+                    <!-- <p>{{new Date(i.date_start)}}</p> -->
+                    <p>{{i.date_start}}</p>
+                    <p>{{i.date_end}}</p>
+                    <!-- <p>{{i.date_end}}</p> -->
             </div>
             <h3>總計: {{total}} 元</h3>
         </div>
@@ -96,38 +91,31 @@
                         search: '',
                         filter: 0,
                         load: false,
-                        min: 0,
-                        max: 0,
+                        min: '',
+                        max: '',
                     }
                 },
                 created(){
                     this.getResource()
+                    // this.date()
                 },
                 computed:{
                     product(){
                         let cache = this.source;
-                        if(this.min > 0){
-                            cache = cache.filter(item=>{
-                                return item.price > this.min
-                            })
-                        }
-                        if(this.max > 0){
-                            cache = cache.filter(item=>{
-                                return item.price < this.max
-                            })
-                        }
+                        
                         if(this.search != ''){
                             cache = cache.filter(item=>{
-                                return item.title.includes(this.search)
+                                return item.name.includes(this.search)
                             })
                         }
                         return cache;
-                    }
+                    },
+               
                 },
                 methods:{
                     getResource(){
                         this.load = true;
-                        fetch('https://fakestoreapi.com/products')
+                        fetch('http://fake-hotel-api.herokuapp.com/api/hotels')
                         .then(res=>res.json())
                         .then(json=>{
                             console.log(json)
@@ -138,22 +126,26 @@
                             this.load = false;
                         })
                     },
-                    add(index){
-                        this.count[index] += 1;
-                        this.sumTotal();
-                    },
-                    reduce(index){
-                        if (this.count[index]<= 0) return;
-                        this.count[index] -= 1;
-                        this.sumTotal();
-                    },
-                    sumTotal(){
-                        this.total = 0;
-                        for(countIndex in this.count){
-                            this.total += this.count[countIndex] * this.product[countIndex]['price']
-                        }
-                        this.total = parseInt(this.total)
-                    }
+                    // date(){
+                    //     let start = this.source.date_start[index]
+                    //     let date_start =new Date(start)
+                    // },
+                    // add(index){
+                    //     this.count[index] += 1;
+                    //     this.sumTotal();
+                    // },
+                    // reduce(index){
+                    //     if (this.count[index]<= 0) return;
+                    //     this.count[index] -= 1;
+                    //     this.sumTotal();
+                    // },
+                    // sumTotal(){
+                    //     this.total = 0;
+                    //     for(countIndex in this.count){
+                    //         this.total += this.count[countIndex] * this.product[countIndex]['price']
+                    //     }
+                    //     this.total = parseInt(this.total)
+                    // }
                 }
             }).mount('#app')
     </script>
