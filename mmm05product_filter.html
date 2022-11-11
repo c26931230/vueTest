@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <style>
+        #app {
+            border: 1px #333 solid;
+            width: fit-content;
+            padding: 10px;
+        }
+
+        img{
+            width: 50%;
+        }
+        .wrap{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            
+        }
+        .item{
+            width: 20%;
+            border: 1px #ddd solid;
+            box-sizing: border-box;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <a class="page" href="index.html">index</a>
+    <div id="app"> 
+        <header>
+            search: <input v-model="search"><br>
+            min: <input type="number" v-model="min">
+            -
+            min: <input type="number" v-model="max">
+        </header>
+        <div class="wrap">
+            <div v-for="(i, index) in product" class="item" :key="i.id">
+                <p>title: {{i.title}}</p>
+                <p>price: ${{i.price}}</p>
+                <img :src="i.image">
+                <div>
+                    <button @click="reduce(index)">-</button>
+                    <input type="number" v-model="count[index]">
+                    <button @click="add(index)">+</button>
+                </div>
+            </div>
+            <p>total: {{total}}</p>
+        </div>
+        
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                    source:[],
+                    count:[],
+                    total: 0,
+                    search:'',
+                    min:0,
+                    max:0,
+                    load: false,
+                    filter:0,
+                }
+            },
+            created(){
+                this.getResource()
+            },
+            computed:{
+                    product(){
+                        let cache = this.source;
+                        if(this.min > 0){
+                            cache = cache.filter(item=>{
+                                return item.price > this.min
+                            })
+                        }
+                        if(this.max > 0){
+                            cache = cache.filter(item=>{
+                                return item.price < this.max
+                            })
+                        }
+                        if(this.search != ''){
+                            cache = cache.filter(item=>{
+                                return item.title.includes(this.search)
+                            })
+                        }
+                        return cache;
+                    }
+                },
+            methods:{
+                getResource(){
+                    this.load = true;
+                    fetch('https://fakestoreapi.com/products')
+                    .then(res=>res.json())
+                    .then(json=>{
+                        this.source = json
+                        for(i in this.product){
+                            this.count.push(0)
+                        }
+                        this.load = false;
+                    })
+                },
+                add(index){
+                        this.count[index] += 1;
+                        this.sumTotal();
+                    },
+                    reduce(index){
+                        if (this.count[index]<= 0) return;
+                        this.count[index] -= 1;
+                        this.sumTotal();
+                    },
+                    sumTotal(){
+                        this.total = 0;
+                        for(countIndex in this.count){
+                            this.total += this.count[countIndex] * this.product[countIndex]['price']
+                        }
+                        this.total = parseInt(this.total)
+                    }
+
+            }
+
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>
