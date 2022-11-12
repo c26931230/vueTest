@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/view-ui-plus/dist/styles/viewuiplus.css">
+    <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
+    <script type="text/javascript" src="https://unpkg.com/view-ui-plus"></script>
+</head>
+
+<body>
+    <a class="page" href="index.html">index</a>
+    <div id="app">
+        <i-button @click="show">Click me!</i-button>
+         <Modal v-model="visible" title="Welcome">Welcome to View UI Plus</Modal>
+         <template>
+            <Slider v-model="value1" :tip-format="format"></Slider>
+            <Slider v-model="value2" :tip-format="hideFormat"></Slider>
+        </template>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+        data () {
+            return {
+                visible: false,
+                value1: 25,
+                value2: 25
+            }
+        },
+        methods: {
+            show () {
+                this.visible = true;
+            },
+            format (val) {
+                return 'Progress: ' + val + '%';
+            },
+            hideFormat () {
+                return null;
+            }
+        }    
+    });
+    // use viewuiplus
+    app.use(ViewUIPlus);
+    app.mount("#app");
+        
+    </script>
+
+</body>
+
+</html>

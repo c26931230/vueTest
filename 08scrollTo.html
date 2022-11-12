@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3寫法</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        section {
+            height: 100vh;
+            font-size: 50vh;
+            position: relative;
+        }
+
+        #section1 {
+            background-color: lightcyan;
+        }
+
+        #section2 {
+            background-color: #fa0;
+        }
+
+        #section3 {
+            background-color: greenyellow;
+        }
+
+        button {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            height: 3rem;
+            padding: 10px;
+        }
+
+        .blockBtnBox {
+            position: fixed;
+            left: 0;
+            top: 50%;
+        }
+        .blockBtnBox button{
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <a class="page" href="index.html">index</a>
+    <div id="app">
+        <section id="section1" ref="section1">
+            1
+            <button @click="scrollDown">往下</button>
+
+        </section>
+        <section id="section2" ref="section2">
+            2
+        </section>
+        <section id="section3" ref="section3">
+            3
+            <button @click="scrollTo">往上</button>
+        </section>
+        <div class="blockBtnBox">
+            <button v-for="item in 3" @click="scrollBlock(item)">{{item}}</button>
+        </div>
+        
+          
+    </div>
+    
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+
+                }
+            },
+            methods: {
+                scrollTo() {
+                    console.log('scrollTo');
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    })
+                },
+                scrollDown() {
+                    console.log('scrollDown');
+                    const box = this.$refs.section2
+                    window.scrollTo({
+                        top: box.offsetTop,
+                        behavior: "smooth"
+                    })
+                },
+                scrollBlock(block){
+                    const box = this.$refs[`section${block}`]
+                    window.scrollTo({
+                        top: box.offsetTop,
+                        behavior: "smooth"
+
+                    })
+                }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>

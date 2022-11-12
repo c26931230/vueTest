@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/view-ui-plus/dist/styles/viewuiplus.css">
+</head>
+<body>
+    <div id="app">
+       <cry-cry :crytext="111"></cry-cry>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script type="text/javascript" src="https://unpkg.com/view-ui-plus"></script>
+    <script>
+        const app = Vue.createApp()
+           app.component('cry-cry',{
+            template:`
+            <div>
+                <h6>123</h6>
+            </div>`,
+            props:['crytext'],
+            data(){
+                return{}
+            }
+           })
+        
+        app.mount("#app")
+    </script>
+</body>
+</html>
+<style>
+    .ivu-carousel-track{
+        width: 100vw !important;
+    }
+    .demo-carousel{
+        width: 100vw;
+        background-color: #444;
+    }
+</style>
