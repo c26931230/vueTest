@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- vue -->
+     <script src="https://unpkg.com/vue@next"></script>
+     <style>
+        
+     </style>
+</head>
+<body>
+    <div id="app">
+      <h1>todo</h1>
+      <ul>
+        <li v-for="i in todoList" :key="i.id">
+            <label for="">{{i.title}}</label>
+            <input type="checkbox" v-model="i.isDone">
+        </li>
+        <hr>
+        <li v-for="i in doneList" :key="i.id">
+            <label for="">{{i.title}}</label>
+            <input type="checkbox" v-model="i.isDone">
+        </li>
+        
+      </ul>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                 list:[
+                    {
+                        id:1,
+                        title:"eat",
+                        isDone:false
+                    },
+                    {
+                        id:2,
+                        title:"sleep",
+                        isDone:false
+                    },
+                    {
+                        id:3,
+                        title:"drink",
+                        isDone:false
+                    },
+                 ]
+                }
+            },
+            computed:{
+             todoList(){
+                return this.list.filter(d => !d.isDone)
+             },
+             doneList(){
+                return this.list.filter(d => d.isDone)
+             },
+            }
+            
+        }).mount('#app')
+      
+   
+    </script>
+</body>
+</html>

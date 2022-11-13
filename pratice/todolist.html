@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- vue -->
+     <script src="https://unpkg.com/vue@next"></script>
+     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #app{
+            position: relative;
+            margin: 50px auto;
+            /* border: 1px solid red; */
+            width: fit-content;
+        }
+        .input_box input{
+            padding: 6px 10px;
+            border: 3px solid darkseagreen;
+            width: 300px;
+            border-radius: 5px 5px 0px 0px;
+        }
+        .list_box{
+            width: 300px;
+            background-color: darkseagreen;
+            border-radius: 0px 0px 5px 5px ;
+        }
+        .list_box input{
+            margin-right: 5px;
+        }
+        h1{
+            font-size: 20px;
+            text-align: center;
+            padding: 10px;
+
+        }
+        ol{
+            list-style-type: none;
+        }
+        li{
+            color: #333;
+            font-size: 20px;
+            width: 100%;
+            display: block;
+            padding: 10px;
+        }
+        li p{
+            width: 60%;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        li:nth-child(odd){
+            background-color: lavender;
+        }
+   
+        input:checked + p{
+            text-decoration-line: line-through;
+        }
+        button{
+            background-color: rgb(29, 47, 146);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+     </style>
+</head>
+<body>
+    <a href="../index.html">index</a>
+    <div id="app">
+        <div class="input_box">
+            <input type="text" placeholder="請輸入新增事項後按 enter 鍵" v-model.trim="msg" @keydown.enter="addTo">
+        </div>
+        <div class="list_box">
+            <h1>To do list</h1>
+            <ol>
+                <li v-for="(m,index) in messages" :key="m">
+                    {{index +1 }}.
+                    <input type="checkbox">
+                    <p :style="style">{{m}}</p>
+                    <button @click="removeTo(index)">刪除</button>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return{
+                   msg:'',
+                   messages:[],
+                }
+            },
+            methods:{
+                addTo(){
+                    this.messages.push(this.msg);
+                    this.msg='';
+                },
+                removeTo(index){
+                    this.messages.splice(index,1)
+                },
+            },
+            
+        }).mount('#app')
+      
+   
+    </script>
+</body>
+</html>

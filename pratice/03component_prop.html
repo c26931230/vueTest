@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- vue -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+      <ul v-for="book in books" class="book">
+        <li>{{book.name}}</li>
+        <li>{{book.author}}</li>
+        <li>{{book.publishedAt}}</li>
+      </ul>
+      <div class="child-app">
+        <div>書名: </div>
+      </div>
+      <hr>
+      <my-component v-for="book in books" :key="book.name" :book-info="book"></my-component>
+    </div>
+    <script>
+       const app = Vue.createApp({
+        data(){
+            return{
+                books: [
+                    {
+                    name: '0 陷阱！0 誤解！8 天重新認識 JavaScript！',
+                    author: 'Kuro Hsu',
+                    publishedAt: '2019/09'
+                    },
+                    {
+                    name: '重新認識 Vue.js',
+                    author: 'Kuro Hsu',
+                    publishedAt: '2021/02'
+                    },
+                ]
+            }
+        }
+       });
+       app.component('my-component',{
+        template:``
+       });
+       app.mount('#app')
+    </script>
+</body>
+
+</html>
