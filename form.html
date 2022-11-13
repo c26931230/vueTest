@@ -38,7 +38,7 @@
     .tab{
         height: 100px;
         width: 100%;
-        background-color: darkkhaki;
+        /* background-color: darkkhaki; */
         
     }
     .tab p{
@@ -47,15 +47,14 @@
     </style>
 </head>
 <body>
-
+    <a href="index.html">index</a>
     
     <div id="app">
         <form action="">
             <div class="avatar" @mouseover ="formHover = true" @mouseleave = "formHover = false" :style="{
-                bacground: activeColor? activeClor : '#ddd'
+                background: formHover? activeColor : '#ccc'
             }">
             <div class="head" :style="{
-                
                 width: formHover? '1rem': '1.5rem',
                 height: formHover? '1rem': '1.5rem'
             }"></div>
@@ -99,7 +98,7 @@
             <br>
             <!-- if else -->
             <div class="tab" :style="{
-                
+                background:activeColor? activeColor: '#ddd' 
             }">
                 <p v-if="food === 'pork'">pork好吃!!</p>
                 <p v-else-if="food === 'beef'">beef超讚!!</p>
@@ -120,7 +119,7 @@
                     drink:[],
                     sex:'',
                     food:'',
-                    activeColorcolor: '',
+                    activeColor: '',
                 }
             }
         }).mount('#app')

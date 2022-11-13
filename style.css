@@ -1,10 +1,10 @@
   a.page{
     display: inline-block;
     text-decoration: none;
-    padding: 6px 10px;
-    background-color: #1746A2;
+    padding: 6px 20px;
+    background-color: #64905b;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 30px;
     transition: 0.5s;
     margin: 10px;

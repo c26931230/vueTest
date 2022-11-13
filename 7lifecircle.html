@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>生命週期</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         *{
             box-sizing: border-box;
@@ -38,6 +39,7 @@
 </head>
 
 <body>
+    <a href="index.html">index</a>
     <div id="app">
     
         <div class="wrapper">
@@ -64,7 +66,7 @@
             <aside>
                 訂單
                 <ul>
-                    <li v-for="item in order :" :key="item.id">
+                    <li v-for="item in order" :key="item.id">
                         ID:{{item.id}}: {{item.count}}
                     </li>
                 </ul>

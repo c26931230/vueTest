@@ -1,56 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vue3寫法</title>
-    <script src="https://unpkg.com/vue@next"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>1</title>
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/view-ui-plus/dist/styles/viewuiplus.css">
-    <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
-    <script type="text/javascript" src="https://unpkg.com/view-ui-plus"></script>
 </head>
-
 <body>
-    <a class="page" href="index.html">index</a>
     <div id="app">
+        <Poptip 
+            trigger="hover" 
+            title="Title" 
+            content="wefesfsvsf"
+        >
+            <Button>Hover</Button>
+        </Poptip>
+        <Carousel v-model="carousel" loop>
+            <CarouselItem>
+                <div class="demo-carousel">1</div>
+            </CarouselItem>
+            <CarouselItem>
+                <div class="demo-carousel">2</div>
+            </CarouselItem>
+            <CarouselItem>
+                <div class="demo-carousel">3</div>
+            </CarouselItem>
+            <CarouselItem>
+                <div class="demo-carousel">4</div>
+            </CarouselItem>
+        </Carousel>
+        {{carousel}}
         <i-button @click="show">Click me!</i-button>
-         <Modal v-model="visible" title="Welcome">Welcome to View UI Plus</Modal>
-         <template>
-            <Slider v-model="value1" :tip-format="format"></Slider>
-            <Slider v-model="value2" :tip-format="hideFormat"></Slider>
-        </template>
+        <Modal v-model="visible" title="Welcome">Welcome to View UI Plus</Modal>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
+    <script type="text/javascript" src="https://unpkg.com/view-ui-plus"></script>
     <script>
         const app = Vue.createApp({
-        data () {
-            return {
-                visible: false,
-                value1: 25,
-                value2: 25
-            }
-        },
-        methods: {
-            show () {
-                this.visible = true;
+            data(){
+                return {
+                    visible: false,
+                    carousel: 1
+                }
             },
-            format (val) {
-                return 'Progress: ' + val + '%';
+            methods: {
+                show(){
+                    this.visible = true;
+                }
             },
-            hideFormat () {
-                return null;
-            }
-        }    
-    });
-    // use viewuiplus
-    app.use(ViewUIPlus);
-    app.mount("#app");
-        
+        })
+        //use ViewUIPlus
+        app.use(ViewUIPlus);
+        app.mount("#app")
     </script>
-
 </body>
-
 </html>
+<style>
+    .ivu-carousel-track{
+        width: 100vw !important;
+    }
+    .demo-carousel{
+        width: 100vw;
+        background-color: #444;
+    }
+</style>
