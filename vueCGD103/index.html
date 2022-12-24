@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        div {
+            width: 80%;
+            /* border: 5px solid darkgreen; */
+            padding: 10px;
+            border-radius: 5px;
+            margin: auto;
+            background-color: #e7e7e7;
+        }
+
+        /* p{
+            font-size: 20px;
+            font-weight: 600;
+            color: #183a2a;
+        } */
+        .score {
+            width: 800px;
+        }
+        .work{
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>上課:</h2>
+        <a class="page" href="00vue2.html">00vue2.html</a>
+        <a class="page" href="01vue3.html">01vue3.html</a>
+        <a class="page" href="02model.html">02model.html</a>
+        <a class="page" href="03for.html">03for.html</a>
+        <a class="page" href="05product_filter.html">05product_filter</a>
+        <a class="page" href="form.html">06form</a>
+        <a class="page" href="7lifecircle.html">07lifecircle</a>
+        <a class="page" href="08scrollTo.html">08scrollTo</a>
+        <a class="page" href="09framework.html">09framework</a>
+        <a class="page" href="10framework.html">10framework</a>
+        <h2>作業:</h2>
+        <a class="page" href="calc.html">calc.html</a>
+        <a class="page" href="pratice/todolist.html">To do list</a>
+        <a class="page" href="hotel.html">hotel(還在努力中..)</a>
+        <h2>團專:</h2>
+        <a class="page" href="https://tibamef2e.com/cgd103/g2/">RE:Outfit</a>
+        <h3>負責頁面</h3>
+        <h4>前台</h4>
+        <ul>
+            <li><a href="https://tibamef2e.com/cgd103/g2/front/Quiz" class="page">風格測驗</a></li>
+            <p>風格共有四種，題目共有11題，根據使用者選擇的選項計分，最後算出最大值，再導入不同風格結果頁，不同風格會有不同的穿搭建議及推薦單品。我覺得計分的js寫太長，應該有更簡潔的方式<br><b>以下是計分表:</b>
+            </p>
+            <img src="score.jpg" alt="score" class="score">
+            <li><a href="https://tibamef2e.com/cgd103/g2/front/MyPage/memQuiz" class="page">我的風格(會員頁)</a></li>
+            <p>會員有登入才能進去，會從資料庫抓測驗紀錄在呈現到畫面中</p>
+            <p>但會員頁登入功能本地端可以，但推上去後不能(應該是php路徑問題)，我們還在想辦法解決，所以這頁應該只會看到尚未測驗</p>
+
+        </ul>
+        <h4>後台</h4>
+        <ul>
+            <li><a href="https://tibamef2e.com/cgd103/g2/back/" class="page">登入</a></li>
+            <p>設定權限，不同身分會導入不同頁面<br>
+                員工帳號:101 密碼:101(導入營運管理)<br>
+                造型師帳號:103 密碼:103(導入會員預約管理)
+            </p>
+            <li><a href="https://tibamef2e.com/cgd103/g2/back/" class="page">營運管理</a><span>(必須先登入)</span></li>
+            <p>運用chart.js
+                將數據圖表化，分析年營收、會員註冊趨勢、廠商預約未處理數量、會員訂閱等級比及收入趨勢。目前我是抓2022/07~12，時間是固定的，因為之後可能不會一直有人去使用，時間如果不固定，我怕的畫面沒資料會不好看。還是老師有甚麼建議嗎~~
+            </p>
+            <li><a href="https://tibamef2e.com/cgd103/g2/back/" class="page">員工管理</a><span>(必須先登入)</span></li>
+            <p>搜尋功能:員工編號、姓名(不分大小寫)、職稱<br>
+                修改員工:輸入員工編號 change事件發生，會帶入員工資料，即可修改(之後會再調整讓UX更好)<br>
+                新增員工:輸入完資料案新增即可
+            </p>
+        </ul>
+        <h4>分工表</h4>
+        <img src="w3.png" class="work">
+        <img src="w1.png" class="work">
+        <img src="w2.png" class="work">
+
+
+    </div>
+</body>
+
+</html>

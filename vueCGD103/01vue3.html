@@ -38,8 +38,13 @@
                     array: [1,2,3],
                     obj:{test:'123'},
                     talk:true
-
                 }
+            },
+            beforeCreate(){
+                console.log(this.name);
+            },
+            created(){
+                console.log(this.name);
             }
         }).mount('#app')//並掛載(mount)在網頁節點上(id="app")
     </script>
